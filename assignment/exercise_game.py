@@ -102,4 +102,3 @@ if __name__ == "__main__":
 
     database_url = "https://seniordesignminiproject-62ed4-default-rtdb.firebaseio.com/"
     scorer(t, database_url)
-
