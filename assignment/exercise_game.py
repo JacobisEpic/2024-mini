@@ -13,7 +13,6 @@ def upload_to_firebase(firebase_url, data):
     json_data = ujson.dumps(data)  # Manually serialize data to JSON
 
     try:
-        # Ensure firebase_url ends with '.json'
         if not firebase_url.endswith('.json'):
             firebase_url += '.json'
         
@@ -34,12 +33,11 @@ def upload_to_firebase(firebase_url, data):
 print(uos.getcwd())
 print(uos.listdir())
 
-N: int = 1  # Number of response times to measure
+N: int = 10  # Number of response times to measure
 sample_ms = 10.0
 on_ms = 500
 
 def random_time_interval(tmin: float, tmax: float) -> float:
-    """Return a random time interval between tmin and tmax."""
     return random.uniform(tmin, tmax)
 
 def blinker(N: int, led: Pin) -> None:
@@ -49,12 +47,7 @@ def blinker(N: int, led: Pin) -> None:
         time.sleep(0.1)
         led.low()
         time.sleep(0.1)
-
-# def write_json(json_filename: str, data: dict) -> None:
-#     """Writes data to a JSON file."""
-#     with open(json_filename, "w") as f:
-#         json.dump(data, f)
-
+        
 def scorer(t: list[int | None], database_url: str) -> None:
     """Process, report response times, write to JSON, and upload to Firebase."""
     t_good = [x for x in t if x is not None]
